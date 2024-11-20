@@ -1,152 +1,71 @@
-# Drag And Drop Import Relative Path (vscode extension)
+<p>
+  <h1 align="center">Drag --(shift)--> Drop --> Import</h1>
+</p>
 
-[![Version Badge][version-badge]][badge-redirect]
-[![Downloads Badge][downloads-badge]][badge-redirect]
+<p align="center">
+  <a href="https://github.com/xianghongai/drag-drop-import">
+    <img src="https://img.shields.io/github/repo-size/xianghongai/drag-drop-import?color=4ac51c&style=plastic&?cacheSeconds=3600">
+  </a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=NicholasHsiang.drag-drop-import">
+    <img src="https://img.shields.io/visual-studio-marketplace/v/NicholasHsiang.drag-drop-import?color=%234ac51c&style=plastic&?cacheSeconds=3600">
+  </a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=NicholasHsiang.drag-drop-import">
+    <img src="https://img.shields.io/visual-studio-marketplace/d/NicholasHsiang.drag-drop-import?color=4ac51c&style=plastic&?cacheSeconds=3600">
+  </a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=NicholasHsiang.drag-drop-import">
+    <img src="https://img.shields.io/visual-studio-marketplace/r/NicholasHsiang.drag-drop-import?color=4ac51c&style=plastic&?cacheSeconds=3600">
+  </a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=NicholasHsiang.drag-drop-import">
+    <img src="https://img.shields.io/github/license/xianghongai/drag-drop-import?color=4ac51c&style=plastic&?cacheSeconds=3600">
+  </a>
+</p>
 
-[version-badge]: https://vsmarketplacebadges.dev/version/ElecTreeFrying.drag-import-relative-path.png
-[downloads-badge]: https://vsmarketplacebadges.dev/downloads-short/ElecTreeFrying.drag-import-relative-path.png
-[badge-redirect]: https://marketplace.visualstudio.com/items?itemName=ElecTreeFrying.drag-import-relative-path
+Fork: 🎉 Here ← [ElecTreeFrying/drag-import-relative-path](https://github.com/ElecTreeFrying/drag-import-relative-path) 🫰.
 
-This [extension] helps developers to quickly and easily import files by dragging them from the tree view to their active text editor. The extension simplifies the workflow, allowing developers to save time and improve their productivity by eliminating the need to type long and tedious import statements and file paths.
-
-[extension]: https://marketplace.visualstudio.com/VSCode
-
-![typescript-demo](https://res.cloudinary.com/october7/image/upload/github/drag-import-relative-path/typescript-demo.gif "Drag and drop import relative path typescript demo")
-![html-demo](https://res.cloudinary.com/october7/image/upload/github/drag-import-relative-path/html-demo.gif "Drag and drop import relative path html demo")
-![markdown-demo](https://res.cloudinary.com/october7/image/upload/github/drag-import-relative-path/markdown-demo.gif "Drag and drop import relative path markdown demo")
-
-**[Click here for more usage examples]**
-
-[Click here for more usage examples]: https://github.com/ElecTreeFrying/drag-import-relative-path/blob/main/DEMO.md
-
-## Supported file extensions
-
-|                      | File extension               |
-| -------------------- | ---------------------------- |
-| Programming Language | `.js`, `.jsx`, `.ts`, `.tsx` |
-| Markup Language      | `.html`, `.md`               |
-| Stylesheet           | `.css`, `.scss`              |
-
-## Usage
+## Usage / 使用方法
 
 1. **Drag** supported files from the tree view.
-1. Hold `shift` 
-1. **Drop** them into any of your active editors.
+2. Hold `shift`
+3. **Drop** them into any of your active editors.
 
-| Active text editor <br> Drop (to) | Supported file extensions <br> Drag (from)                                                                                                                                |
-| :-------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-|              `.html`              | `.js`, `.css`, `.gif`, `.jpeg`, `.jpg`, `.png`, .`webp`                                                                                                                   |
-|               `.md`               | self, `.gif`, `.jpeg`, `.jpg`, `.png`, .`webp`                                                                                                                            |
-|           `.js`, `.ts`            | self                                                                                                                                                                      |
-|              `.jsx`               | self, `.js`, `.json`<br>`.css`,`.sass` `.scss`<br>`.png`, `.jpg`, `.gif`, `.svg`, `.webp`<br>`.woff`, `.woff2`, `.ttf`, `.eot`<br>`.md`, `.yml`, `.yaml`, `.html`         |
-|              `.tsx`               | self, `.ts`, `.js`, `.json`<br>`.css`, `.sass` `.scss`<br>`.png`, `.jpg`, `.gif`, `.svg`, `.webp`<br>`.woff`, `.woff2`, `.ttf`, `.eot`<br>`.md`, `.yml`, `.yaml`, `.html` |
-|              `.css`               | self, `.gif`, `.jpeg`, `.jpg`, `.png`, .`webp`                                                                                                                            |
-|              `.scss`              | self,  `.css`, `.gif`, `.jpeg`, `.jpg`, `.png`, .`webp`                                                                                                                   |
+--
 
-## More usage examples
+1. 在侧边资源管理器中，鼠标左键拖着文件不松开
+2. 按住 `shift`
+3. 拖到编辑器中导入位置，松开鼠标，完成导入
 
-* **[Click here]**
+## Example / 示例
 
-[Click here]: https://github.com/ElecTreeFrying/drag-import-relative-path/blob/main/DEMO.md
+![Vue](assets/example/vue.gif)
 
-## Extension Settings
+![SCSS](assets/example/scss.gif)
 
-### Import statements
+![Markdown](assets/example/md.gif)
 
-**Scripts:** Javascript, React Javascript, Typescript, React Typescript
+## Supported file extensions / 支持的文件类型
 
-* `importStatements.script.preserveFileExtension`: _(Boolean)_ **default → false**
-  
-* `importStatements.script.javascriptImportStyle`
-  * `import $1 from '_relativePath_';` **→ default**
-  * `import { $1 } from '_relativePath_';`
-  * `import { $1 as $2 } from '_relativePath_';`
-  * `import * as $1 from '_relativePath_';`
-  * `import '_relativePath_';`
-  * `var $1 = require('_relativePath_');`
-  * `const $1 = require('_relativePath_');`
-  * `var $1 = import('_relativePath_');`
-  * `const $1 = import('_relativePath_');`
+| Drop         | Drag                                                                                                                       |
+|--------------|----------------------------------------------------------------------------------------------------------------------------|
+| `.vue`       | `.vue`<br>`.js`<br>`.json`<br>`.css`, `.sass`, `.scss`, `.less`<br>`.gif`, `.jpeg`, `.jpg`, `.png`, `.svg`, `.webp`        |
+| `.js`, `.ts` | `.js`, `.ts`<br>`.json`<br>`.css`, `.sass`, `.scss`, `.less`<br>`.gif`, `.jpeg`, `.jpg`, `.png`, `.svg`, `.webp`           |
+| `.jsx`       | `.jsx`<br>`.js`<br>`.json`<br>`.css`, `.sass`, `.scss`, `.less`<br>`.gif`, `.jpeg`, `.jpg`, `.png`, `.svg`, `.webp`        |
+| `.tsx`       | `.tsx`<br>`.ts`, `.js`<br>`.json`<br>`.css`, `.sass`, `.scss`, `.less`<br>`.gif`, `.jpeg`, `.jpg`, `.png`, `.svg`, `.webp` |
+| `.css`       | `.css`<br>`.gif`, `.jpeg`, `.jpg`, `.png`, `.svg`, `.webp`                                                                 |
+| `.scss`      | `.scss`<br> `.css`<br>`.gif`, `.jpeg`, `.jpg`, `.png`, `.svg`, `.webp`                                                     |
+| `.html`      | `.js`<br>`.css`<br>`.gif`, `.jpeg`, `.jpg`, `.png`, `.svg`, `.webp`                                                        |
+| `.md`        | `.md`<br>`.gif`, `.jpeg`, `.jpg`, `.png`, `.svg`, `.webp`                                                                  |
 
-* `importStatements.script.typescriptImportStyle`
-  * `import $1 from '_relativePath_';`
-  * `import { $1 } from '_relativePath_';` **→ default**
-  * `import { $1 as $2 } from '_relativePath_';`
-  * `import * as $1 from '_relativePath_';`
-  * `import '_relativePath_';`
+## Settings / 设置
 
-**Stylesheets:** CSS, SCSS
+- `dragDropImport.importStatements.pathMappings`, Path mappings configuration/路径映射配置，默认配置适配了 [Vue CLI / URL 转换规则](https://cli.vuejs.org/zh/guide/html-and-static-assets.html#url-%E8%BD%AC%E6%8D%A2%E8%A7%84%E5%88%99)
+- `dragDropImport.importStatements.pathStyle`, Path style configuration/路径风格配置 (支持别名路径、相对路径)
 
-* `importStatements.styleSheet.preserveFileExtension`: _(Boolean)_ **default → false**
+## License 📃
 
-* `importStatements.styleSheet.cssImportStyle`
-  * `@import '_relativePath_';` **→ default**
-  * `@import url('_relativePath_');`
+MIT License
 
-* `importStatements.styleSheet.cssImageImportStyle`
-  * `url('_relativePath_')` **→ default**
+## Donate 🎉
 
-* `importStatements.styleSheet.scssImportStyle`
-  * `@import '_relativePath_';` **→ default**
-  * `@import url('_relativePath_');`
-  * `@use '_relativePath_';`
-  * `@use '_relativePath_' as *;`
+![xianghongai@gmail.com](https://raw.githubusercontent.com/caringrun/assets/master/donate.png)
 
-* `importStatements.styleSheet.scssImageImportStyle`
-  * `url('_relativePath_')';` **→ default**
-
-**Markup:** HTML, Markdown
-
-* `importStatements.markup.htmlScriptImportStyle`
-  * `<script type="text/javascript" src="_relativePath_"></script>` **→ default**
-
-* `importStatements.markup.htmlImageImportStyle`
-  * `<img src="_relativePath_" alt="sample">` **→ default**
-
-* `importStatements.markup.htmlStyleSheetImportStyle`
-  * `<link href="_relativePath_" rel="stylesheet">` **→ default**
-
-* `importStatements.markup.markdownImportStyle`
-  * `![text](_relativePath_)` **→ default**
-
-* `importStatements.markup.markdownImageImportStyle`
-  * `![alt-text](_relativePath_ "Hover text")` **→ default**
-  * `![alt-text][image] / [image]: _relativePath_ "Hover text"`
-
-## Installation
-
-  1. Install VS Code v1.70.0 or higher
-  2. Launch Visual Studio Code
-  3. Enter command `Ctrl+Shift+P` (Windows, Linux) or `Cmd+Shift+P` (OSX)
-  4. Select → `Extensions: Install Extensions`.
-  5. Choose **Drag And Drop Import Relative Path** by _ElecTreeFrying_
-  6. Reload Visual Studio Code
-
-## Changelog
-
-See [CHANGELOG] for more information.
-
-[CHANGELOG]: https://marketplace.visualstudio.com/items/ElecTreeFrying.drag-import-relative-path/changelog
-
-## Contributing
-* You can submit bug reports and feature requests in [GitHub Issues].
-* Leave a review on [Visual Studio Marketplace].
-
-[Github Issues]: https://github.com/ElecTreeFrying/drag-import-relative-path/issues
-[Visual Studio Marketplace]: https://marketplace.visualstudio.com/items?itemName=ElecTreeFrying.drag-import-relative-path&ssr=false#review-details
-
-## Related
-
-### More extensions of mine
-
-* [Visual Studio Code]
-* [Atom]
-
-[Visual Studio Code]: https://marketplace.visualstudio.com/publishers/ElecTreeFrying
-[Atom]: https://atom.io/users/ElecTreeFrying
-
-## License
-
-[MIT]
-
-[MIT]: https://marketplace.visualstudio.com/items/ElecTreeFrying.drag-import-relative-path/license
+Powered By [Cursor](https://www.cursor.com/) 💝

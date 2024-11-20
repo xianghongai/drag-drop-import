@@ -9,3 +9,5 @@ local/*
 ISSUES.md
 .DS_Store
 test-directories
+
+.idea/

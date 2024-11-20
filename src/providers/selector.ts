@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 
-/* 
+/*
   Declared language identifiers
   for drop edit provider registration
   */
@@ -27,6 +27,14 @@ export const selectors: vscode.DocumentSelector = [
   },
   {
     language: 'scss',
+    scheme: 'file'
+  },
+  {
+    language: 'less',
+    scheme: 'file'
+  },
+  {
+    language: 'vue',
     scheme: 'file'
   },
   {

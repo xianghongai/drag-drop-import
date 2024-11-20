@@ -1,74 +1,68 @@
-import * as vscode from 'vscode';
-
-import { importStatementSnippet, getRelativePath, getFileExt, notify } from '../utilities';
+import {
+  CancellationToken,
+  DataTransfer,
+  DocumentDropEdit,
+  DocumentDropEditProvider,
+  Position,
+  TextDocument,
+} from 'vscode';
+import { unknown } from '../import-snippets';
 import { NotifyType } from '../model';
-import { htmlSupported, markdownSupported, cssSupported, scssSupported, permittedExts } from '../providers';
+import {
+  cssExtensionLanguageSupported,
+  cssSupported,
+  htmlSupported,
+  markdownSupported,
+  vueModule,
+  vueSupported,
+} from '../providers';
+import { getFileExt, importStatementSnippet, notify } from '../utilities';
 
-/* 
-  Drag and drop handler
+/**
+ * Drag and drop handler
  */
-export class AutoImportOnDropProvider implements vscode.DocumentDropEditProvider {
+export class AutoImportOnDropProvider implements DocumentDropEditProvider {
   async provideDocumentDropEdits(
-		_document: vscode.TextDocument,
-		position: vscode.Position,
-		dataTransfer: vscode.DataTransfer,
-		token: vscode.CancellationToken
-	): Promise<vscode.DocumentDropEdit> {
+    _document: TextDocument,
+    position: Position,
+    dataTransfer: DataTransfer,
+    token: CancellationToken
+  ): Promise<DocumentDropEdit> {
 
-    /* 
-      Get the active text editor file path and dragged file path from tree view
-      */
+    // Get the active text editor file path and dragged file path from tree view
     const dataTransferItem = dataTransfer.get('text/plain');
     const dropFilePath = _document.uri.fsPath;
-    const dragFilePath = dataTransferItem.value;
+    const dragFilePath = dataTransferItem?.value;
 
-    /* 
-      Prevents same file drag and drop
-      */
+    // Prevents same file drag and drop
     if (dragFilePath.toLowerCase() === dropFilePath.toLowerCase()) {
       return notify(NotifyType.SameFilePath);
     }
 
-    /* 
-      Prevents unsupported drag and drop
-      */
+    // Prevents unsupported drag and drop
     if (
       // Checks unsupported drag and drop files
-      (!permittedExts.includes(getFileExt(dropFilePath)) && (getFileExt(dragFilePath) !== getFileExt(dropFilePath)) )
-      // Checks HTML to HTML drag and drop
-      || (getFileExt(dragFilePath) === '.html' && getFileExt(dropFilePath) === '.html')
-      // Checks unsupported HTML drag import file extensions
-      || (!htmlSupported.includes(getFileExt(dragFilePath)) && getFileExt(dropFilePath) === '.html')
-      // Checks unsupported Markdown drag import file extensions
-      || (!markdownSupported.includes(getFileExt(dragFilePath)) && getFileExt(dropFilePath) === '.md')
+      (!vueSupported.includes(getFileExt(dragFilePath)) && vueModule.includes(getFileExt(dropFilePath)))
       // Checks unsupported CSS drag import file extensions
       || (!cssSupported.includes(getFileExt(dragFilePath)) && getFileExt(dropFilePath) === '.css')
-      // Checks unsupported SCSS drag import file extensions
-      || (!scssSupported.includes(getFileExt(dragFilePath)) && getFileExt(dropFilePath) === '.scss')
+      // Checks unsupported SCSS/Less drag import file extensions
+      || (!cssExtensionLanguageSupported.includes(getFileExt(dragFilePath)) && (getFileExt(dropFilePath) === '.scss' || getFileExt(dropFilePath) === '.less'))
+      // Checks unsupported Markdown drag import file extensions
+      || (!markdownSupported.includes(getFileExt(dragFilePath)) && getFileExt(dropFilePath) === '.md')
+      // Checks unsupported HTML drag import file extensions
+      || (!htmlSupported.includes(getFileExt(dragFilePath)) && getFileExt(dropFilePath) === '.html')
     ) {
       notify(NotifyType.NotSupported);
-      return { insertText: relativePath(dropFilePath, dragFilePath) };
+      return { insertText: unknown.snippet({dragFilePath, dropFilePath}) };
     }
 
-    const snippet = importStatementSnippet(
-      getRelativePath(dropFilePath, dragFilePath),
-      dragFilePath,
-      dropFilePath
-    );
+    const snippet = importStatementSnippet(dragFilePath, dropFilePath);
 
     if (snippet.value === '\n') {
       notify(NotifyType.NotSupported);
-      return { insertText: relativePath(dropFilePath, dragFilePath) };
+      return { insertText: unknown.snippet({dragFilePath, dropFilePath}) };
     }
 
-    /* 
-      Insert text
-      */
     return { insertText: snippet };
   }
-}
-
-function relativePath(toFilepath: string, fromFilepath: string): vscode.SnippetString {
-  const snippet = new vscode.SnippetString(`${getRelativePath(toFilepath, fromFilepath) + getFileExt(fromFilepath)}`);
-  return snippet.appendText('\n');
 }

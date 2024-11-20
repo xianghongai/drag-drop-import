@@ -1,5 +1,5 @@
 export * from './file-extension';
-export * from './import-type';
+export * from './file-type';
 export * from './notify';
-export * from './relative-path';
+export * from './file-path';
 export * from './import-statement-snippet';

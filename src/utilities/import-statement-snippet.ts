@@ -1,45 +1,47 @@
-import * as vscode from 'vscode';
-
-import * as importPath from '../import-snippets';
-import { getFileExt } from '.';
+import { SnippetString } from 'vscode';
+import * as snippets from '../import-snippets';
+import { getFileExt } from './';
 
 /**
  * Get calculated import style to append in editor.
- * @param {string} relativePath Calculated relative path from dragged file and text editor.
- * @param {string} fromFilepath Dragged file path. 
- * @param {string} toFilepath Dropped file path. 
+ * @param {string} dragFilePath Dragged file path.
+ * @param {string} dropFilePath Dropped file path.
  * @returns Import statement string
  */
-export function importStatementSnippet(
-  relativePath: string,
-  fromFilepath: string,
-  toFilepath: string
-): vscode.SnippetString {
-
-  switch (getFileExt(toFilepath)) {
+export function importStatementSnippet(dragFilePath: string, dropFilePath: string): SnippetString {
+  switch (getFileExt(dropFilePath)) {
     case '.js': {
-      return importPath.javascript.snippet(relativePath, fromFilepath);
+      return snippets.javascript.snippet({ dragFilePath, dropFilePath });
     }
     case '.jsx': {
-      return importPath.jsx.snippet(relativePath, fromFilepath);
+      return snippets.jsx.snippet({ dragFilePath, dropFilePath });
     }
     case '.ts': {
-      return importPath.typescript.snippet(relativePath, fromFilepath);
+      return snippets.typescript.snippet({ dragFilePath, dropFilePath });
     }
     case '.tsx': {
-      return importPath.tsx.snippet(relativePath, fromFilepath);
+      return snippets.tsx.snippet({ dragFilePath, dropFilePath });
     }
     case '.css': {
-      return importPath.css.snippet(relativePath, fromFilepath);
+      return snippets.css.snippet({ dragFilePath, dropFilePath });
+    }
+    case '.less': {
+      return snippets.less.snippet({ dragFilePath, dropFilePath });
     }
     case '.scss': {
-      return importPath.scss.snippet(relativePath, fromFilepath);
+      return snippets.scss.snippet({ dragFilePath, dropFilePath });
     }
     case '.html': {
-      return importPath.html.snippet(relativePath, fromFilepath);
+      return snippets.html.snippet({ dragFilePath, dropFilePath });
     }
     case '.md': {
-      return importPath.markdown.snippet(relativePath, fromFilepath);
+      return snippets.markdown.snippet({ dragFilePath, dropFilePath });
+    }
+    case '.vue': {
+      return snippets.vue.snippet({ dragFilePath, dropFilePath });
+    }
+    default: {
+      return snippets.unknown.snippet({ dragFilePath, dropFilePath });
     }
   }
 }

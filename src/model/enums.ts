@@ -1,6 +1,6 @@
-/* 
-  Notification error/warning types
-  */
+/**
+ * Notification error/warning types
+ */
 export enum NotifyType {
   SameFilePath,
   NotSupported

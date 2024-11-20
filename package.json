@@ -1,41 +1,26 @@
 {
-  "name": "drag-import-relative-path",
-  "displayName": "Drag And Drop Import Relative Path",
-  "description": "This extension improves developer productivity by allowing drag-and-drop file imports.",
-  "publisher": "ElecTreeFrying",
-  "version": "0.2.5",
+  "name": "drag-drop-import",
+  "displayName": "Drag --(shift)--> Drop --> Import",
+  "description": "This extension improves developer productivity by allowing drag-and-drop file imports, support relative path and alias path.",
+  "publisher": "NicholasHsiang",
+  "version": "1.0.0",
   "author": {
-    "name": "John James Ermitaño",
-    "email": "jjgermitano@gmail.com"
+    "name": "NicholasHsiang",
+    "email": "xianghongai@gmail.com"
   },
-  "icon": "assets/extension-icon.png",
+  "icon": "assets/icon.png",
   "engines": {
-    "vscode": "^1.70.0"
+    "vscode": "^1.90.0"
   },
-  "homepage": "https://github.com/ElecTreeFrying/drag-import-relative-path/blob/master/README.md",
+  "homepage": "https://github.com/xianghongai/drag-drop-import",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ElecTreeFrying/drag-import-relative-path.git"
+    "url": "https://github.com/xianghongai/drag-drop-import.git"
   },
   "bugs": {
-    "email": "jam@fisendo.com",
-    "url": "https://github.com/ElecTreeFrying/drag-import-relative-path/issues"
+    "email": "xianghongai@gmail.com",
+    "url": "https://github.com/xianghongai/drag-drop-import/issues"
   },
-  "badges": [
-    {
-      "url": "https://vsmarketplacebadges.dev/version/ElecTreeFrying.drag-import-relative-path.png",
-      "description": "Version badge",
-      "href": "https://marketplace.visualstudio.com/items?itemName=ElecTreeFrying.drag-import-relative-path"
-    },
-    {
-      "url": "https://vsmarketplacebadges.dev/downloads-short/ElecTreeFrying.drag-import-relative-path.png",
-      "description": "Downloads badge",
-      "href": "https://marketplace.visualstudio.com/items?itemName=ElecTreeFrying.drag-import-relative-path"
-    }
-  ],
-  "extensionPack": [
-    "ElecTreeFrying.auto-import"
-  ],
   "galleryBanner": {
     "color": "#494949",
     "theme": "dark"
@@ -49,6 +34,7 @@
     "drag import",
     "drag and drop import",
     "relative import",
+    "alias import",
     "auto import",
     "relative path",
     "drag",
@@ -62,151 +48,112 @@
     "typescript",
     "css",
     "scss",
+    "vue",
     "html",
     "markdown"
   ],
   "activationEvents": [
     "onLanguage:javascript",
-    "onLanguage:javascriptreact",
     "onLanguage:typescript",
-    "onLanguage:typescriptreact",
     "onLanguage:css",
     "onLanguage:scss",
     "onLanguage:html",
-    "onLanguage:markdown"
+    "onLanguage:vue"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "configuration": [
       {
-        "title": "Drag And Drop Import Relative Path",
+        "title": "Drag And Drop Import",
         "properties": {
-          "importStatements.script.preserveScriptFileExtension": {
+          "dragDropImport.importStatements.pathStyle": {
+            "type": "object",
+            "description": "",
+            "order": 0,
+            "properties": {
+              "general": {
+                "type": "string",
+                "title": "General import style",
+                "description": "Supported general import styles",
+                "enum": [
+                  "relative",
+                  "alias"
+                ],
+                "uniqueItems": true
+              },
+              "styleSheet2styleSheet": {
+                "type": "string",
+                "title": "Style sheet import style",
+                "description": "Supported style sheet import styles",
+                "enum": [
+                  "relative",
+                  "alias"
+                ],
+                "uniqueItems": true
+              }
+            },
+            "default": {
+              "general": "alias",
+              "styleSheet2styleSheet": "relative"
+            },
+            "additionalProperties": false
+          },
+          "dragDropImport.importStatements.pathMappings": {
+            "type": "object",
+            "description": "Path mappings configuration",
+            "order": 2,
+            "additionalProperties": {
+              "type": "string"
+            },
+            "default": {
+              "@": "src",
+              "~": "node_modules/"
+            }
+          },
+          "dragDropImport.importStatements.script.javascriptImportStyle": {
+            "title": "Javascript import styles",
+            "description": "Supported Javascript import styles",
+            "order": 3,
+            "type": "string",
+            "default": "import { name } from '_path_';",
+            "enum": [
+              "import name from '_path_';",
+              "import { name } from '_path_';",
+              "import { default as name } from '_path_';",
+              "import * as name from '_path_';",
+              "import '_path_';"
+            ]
+          },
+          "dragDropImport.importStatements.script.typescriptImportStyle": {
+            "title": "Typescript (.ts) import styles",
+            "description": "Supported Typescript (.ts) import styles",
+            "order": 4,
+            "type": "string",
+            "default": "import { name } from '_path_';",
+            "enum": [
+              "import name from '_path_';",
+              "import { name } from '_path_';",
+              "import { default as name } from '_path_';",
+              "import * as name from '_path_';",
+              "import '_path_';"
+            ]
+          },
+          "dragDropImport.importStatements.script.preserveTypeScriptFileExtension": {
             "title": "Preserve file extension",
-            "description": "Preserve the file extension in the relative path.",
+            "description": "Preserve the file extension in the alias path.",
+            "order": 5,
             "type": "boolean",
             "default": false
           },
-          "importStatements.script.javascriptImportStyle": {
-            "title": "Javascript (.ts)/React Javascript(.tsx) import styles",
-            "description": "Supported Javascript (.ts)/React Javascript(.tsx) import styles",
-            "type": "string",
-            "default": "import name from '_relativePath_';",
-            "enum": [
-              "import name from '_relativePath_';",
-              "import { name } from '_relativePath_';",
-              "import { default as name } from '_relativePath_';",
-              "import * as name from '_relativePath_';",
-              "import '_relativePath_';",
-              "var name = require('_relativePath_');",
-              "const name = require('_relativePath_');",
-              "var name = import('_relativePath_');",
-              "const name = import('_relativePath_');"
-            ]
-          },
-          "importStatements.script.typescriptImportStyle": {
-            "title": "Typescript (.ts)/React Typescript(.tsx) import styles",
-            "description": "Supported Typescript (.ts)/React Typescript(.tsx) import styles",
-            "type": "string",
-            "default": "import { name } from '_relativePath_';",
-            "enum": [
-              "import name from '_relativePath_';",
-              "import { name } from '_relativePath_';",
-              "import { default as name } from '_relativePath_';",
-              "import * as name from '_relativePath_';",
-              "import '_relativePath_';"
-            ]
-          },
-          "importStatements.styleSheet.preserveStylesheetFileExtension": {
-            "title": "Preserve file extension",
-            "description": "Preserve the file extension in the relative path.",
-            "type": "boolean",
-            "default": false
-          },
-          "importStatements.styleSheet.cssImportStyle": {
+          "dragDropImport.importStatements.styleSheet.cssImportStyle": {
             "title": "CSS import styles",
             "description": "Supported CSS import styles",
+            "order": 6,
             "type": "string",
-            "default": "@import '_relativePath_';",
+            "default": "@import '_path_';",
             "enum": [
-              "@import '_relativePath_';",
-              "@import url('_relativePath_');"
-            ]
-          },
-          "importStatements.styleSheet.cssImageImportStyle": {
-            "title": "CSS import styles",
-            "description": "Supported CSS import styles",
-            "type": "string",
-            "default": "url('_relativePath_')",
-            "enum": [
-              "url('_relativePath_')"
-            ]
-          },
-          "importStatements.styleSheet.scssImportStyle": {
-            "title": "SCSS import styles",
-            "description": "Supported SCSS import styles",
-            "type": "string",
-            "default": "@import '_relativePath_';",
-            "enum": [
-              "@import '_relativePath_';",
-              "@import url('_relativePath_');",
-              "@use '_relativePath_';",
-              "@use '_relativePath_' as *;"
-            ]
-          },
-          "importStatements.styleSheet.scssImageImportStyle": {
-            "title": "SCSS import styles",
-            "description": "Supported SCSS import styles",
-            "type": "string",
-            "default": "url('_relativePath_')",
-            "enum": [
-              "url('_relativePath_')"
-            ]
-          },
-          "importStatements.markup.htmlScriptImportStyle": {
-            "title": "HTML import styles for script",
-            "description": "Supported HTML import styles for script",
-            "type": "string",
-            "default": "<script type=\"text/javascript\" src=\"_relativePath_\"></script>",
-            "enum": [
-              "<script type=\"text/javascript\" src=\"_relativePath_\"></script>"
-            ]
-          },
-          "importStatements.markup.htmlImageImportStyle": {
-            "title": "HTML image import styles for script",
-            "description": "Supported HTML image import styles for script",
-            "type": "string",
-            "default": "<img src=\"_relativePath_\" alt=\"sample\">",
-            "enum": [
-              "<img src=\"_relativePath_\" alt=\"sample\">"
-            ]
-          },
-          "importStatements.markup.htmlStyleSheetImportStyle": {
-            "title": "HTML import styles from stylesheet",
-            "description": "Supported HTML import styles from stylesheet",
-            "type": "string",
-            "default": "<link href=\"_relativePath_\" rel=\"stylesheet\">",
-            "enum": [
-              "<link href=\"_relativePath_\" rel=\"stylesheet\">"
-            ]
-          },
-          "importStatements.markup.markdownImportStyle": {
-            "title": "Markdown import styles",
-            "description": "Supported markdown import styles",
-            "type": "string",
-            "default": "![text](_relativePath_)",
-            "enum": [
-              "![text](_relativePath_)"
-            ]
-          },
-          "importStatements.markup.markdownImageImportStyle": {
-            "title": "Markdown image import styles",
-            "description": "Supported markdown image import styles",
-            "type": "string",
-            "default": "![alt-text](_relativePath_ \"Hover text\")",
-            "enum": [
-              "![alt-text](_relativePath_ \"Hover text\")",
-              "![alt-text][image] / [image]: _relativePath_ \"Hover text\""
+              "@import '_path_';",
+              "@import url('_path_');"
             ]
           }
         }
@@ -217,17 +164,24 @@
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "lint": "eslint src --ext ts"
+    "lint": "eslint src --ext ts",
+    "prebuild": "npm run compile",
+    "build": "vsce package",
+    "prepublish": "npm run build",
+    "publish": "vsce publish"
   },
   "devDependencies": {
-    "@types/glob": "^7.2.0",
-    "@types/lodash": "^4.14.182",
-    "@types/node": "16.x",
-    "@types/vscode": "^1.70.0",
-    "@typescript-eslint/eslint-plugin": "^5.31.0",
-    "@typescript-eslint/parser": "^5.31.0",
-    "eslint": "^8.20.0",
-    "glob": "^8.0.3",
-    "typescript": "^4.7.4"
+    "@types/lodash": "^4.17.13",
+    "@types/node": "^22.9.0",
+    "@types/vscode": "^1.90.0",
+    "@vscode/vsce": "^3.2.1",
+    "@typescript-eslint/eslint-plugin": "^8.15.0",
+    "@typescript-eslint/parser": "^8.15.0",
+    "eslint": "^9.15.0",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.15.0"
+  },
+  "dependencies": {
+    "change-case": "^4.0.0"
   }
 }
