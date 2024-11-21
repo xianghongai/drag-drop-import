@@ -54,9 +54,12 @@
   ],
   "activationEvents": [
     "onLanguage:javascript",
+    "onLanguage:javascriptreact",
     "onLanguage:typescript",
+    "onLanguage:typescriptreact",
     "onLanguage:css",
     "onLanguage:scss",
+    "onLanguage:less",
     "onLanguage:html",
     "onLanguage:vue"
   ],
