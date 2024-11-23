@@ -1,5 +1,5 @@
 <p>
-  <h1 align="center">Drag --(shift)--> Drop --> Import</h1>
+  <h1 align="center">Drag > (shift) > Drop > Import</h1>
 </p>
 
 <p align="center">
@@ -21,6 +21,13 @@
 </p>
 
 Fork: 🎉 Here ← [ElecTreeFrying/drag-import-relative-path](https://github.com/ElecTreeFrying/drag-import-relative-path) 🫰.
+
+
+Support relative path and alias path.
+
+--
+
+支持相对路径和别名路径导入
 
 ## Usage / 使用方法
 

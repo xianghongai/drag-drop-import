@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.2 (2024-11-23)
+
+- 改了一下 README.md 和 package.json 的描述，看起来更直接一点
+
 ## v1.0.1 (2024-11-21)
 
 - `activationEvents` 配置 `onLanguage` 增加 jsx/tsx/less 支持
