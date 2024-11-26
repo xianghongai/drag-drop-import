@@ -1,8 +1,9 @@
 import { EOL } from 'os';
-import { SnippetString, workspace } from 'vscode';
+import { SnippetString } from 'vscode';
 import { DragDropParams, ImportStyle } from '../../model';
 import { importStyle } from '../../providers';
 import { getPath } from '../../utilities';
+import { getCssImportStyleConfiguration } from '../../utilities/workspace-configuration';
 
 /**
  * Returns the Import statement string
@@ -13,10 +14,10 @@ import { getPath } from '../../utilities';
 export function cssImportStatement({ dragFilePath, dropFilePath }: DragDropParams): SnippetString {
   const importPath = getPath({ dragFilePath, dropFilePath });
 
-  let configValue = workspace.getConfiguration('dragDropImport.importStatements.styleSheet').get('cssImportStyle');
-  configValue = importStyle.css.find((config: ImportStyle) => config.description === configValue)?.value ?? 1;
+  const configValue = getCssImportStyleConfiguration();
+  const value = importStyle.css.find((config: ImportStyle) => config.description === configValue)?.value ?? 1;
 
-  switch (configValue as number) {
+  switch (value) {
     case 0:
       return new SnippetString(`@import '${importPath}';${EOL}$0`);
     case 1:

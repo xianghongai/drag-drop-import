@@ -1,9 +1,10 @@
 import * as changeCase from 'change-case';
 import { EOL } from 'os';
-import { SnippetString, workspace } from 'vscode';
+import { SnippetString } from 'vscode';
 import { DragDropParams, ImportStyle } from '../../model';
 import { importStyle } from '../../providers';
 import { getFileDir, getFileName, getFileType, getPath } from '../../utilities';
+import { getScriptImportStyleConfiguration } from '../../utilities/workspace-configuration';
 
 /**
  * Returns the Import statement string
@@ -32,10 +33,10 @@ export function javascriptImportStatement({ dragFilePath, dropFilePath }: DragDr
   }
 
   // 3. Import JavaScript file
-  let configValue = workspace.getConfiguration('dragDropImport.importStatements.script').get('javascriptImportStyle');
-  configValue = importStyle.javascript.find((config: ImportStyle) => config.description === configValue)?.value ?? 1;
+  const configValue = getScriptImportStyleConfiguration();
+  const value = importStyle.javascript.find((config: ImportStyle) => config.description === configValue)?.value ?? 1;
 
-  switch (configValue as number) {
+  switch (value) {
     case 0:
       return new SnippetString(`import \${1:${changeCase.camelCase(fileName)}} from '${importPath}';${EOL}$0`);
     case 1:

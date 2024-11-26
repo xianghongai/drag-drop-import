@@ -1,9 +1,12 @@
 import * as changeCase from 'change-case';
 import { EOL } from 'os';
-import { SnippetString, workspace } from 'vscode';
+import { SnippetString } from 'vscode';
 import { DragDropParams, ImportStyle } from '../../model';
 import { importStyle } from '../../providers';
 import { getFileDir, getFileName, getFileType, getPath, removeFileExt } from '../../utilities';
+import {
+  getPreserveTypeScriptFileExtensionConfiguration, getTypescriptImportStyleConfiguration,
+} from '../../utilities/workspace-configuration';
 
 /**
  * Returns the Import statement string
@@ -32,16 +35,16 @@ export function typescriptImportStatement({ dragFilePath, dropFilePath }: DragDr
   }
 
   // 3. Import TypeScript file
-  const preserve = workspace.getConfiguration('dragDropImport.importStatements.script').get('preserveTypeScriptFileExtension') as boolean;
+  const preserve = getPreserveTypeScriptFileExtensionConfiguration();
 
   if (!preserve) {
     importPath = removeFileExt(importPath);
   }
 
-  let configValue = workspace.getConfiguration('dragDropImport.importStatements.script').get('typescriptImportStyle');
-  configValue = importStyle.typescript.find((config: ImportStyle) => config.description === configValue)?.value ?? 1;
+  const configValue = getTypescriptImportStyleConfiguration();
+  const value = importStyle.typescript.find((config: ImportStyle) => config.description === configValue)?.value ?? 1;
 
-  switch (configValue as number) {
+  switch (value) {
     case 0:
       return new SnippetString(`import \${1:${changeCase.camelCase(fileName)}} from '${importPath}';${EOL}$0`);
     case 2:

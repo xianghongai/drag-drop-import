@@ -1,8 +1,10 @@
 import path from 'path';
-import { workspace, WorkspaceConfiguration } from 'vscode';
-import { DragDropParams, PathMapping } from '../model';
+import { DragDropParams } from '../model';
 import { removeFileExt } from './file-extension';
 import { getFileType } from './file-type';
+import {
+  getPathMappingsConfiguration, getPathStyleConfiguration, getSameDirKeepRelativeConfiguration,
+} from './workspace-configuration';
 
 /**
  * Get file name from path/relative paths.
@@ -20,14 +22,6 @@ export function getFileName(filePath: string): string {
  */
 export function getFileDir(filePath: string): string {
   return path.parse(filePath).dir.split(path.sep).pop() || '';
-}
-
-/**
- * Get the path style configuration
- * @returns The path style configuration
- */
-function getPathStyleConfiguration(): WorkspaceConfiguration {
-  return workspace.getConfiguration('dragDropImport.importStatements.pathStyle');
 }
 
 /**
@@ -82,11 +76,7 @@ export function getRelativePath(basePath: string, targetPath: string, preserveFi
  * @returns Converted alias path
  */
 export function getAliasPath(filePath: string, preserveFileExtension = true): string {
-  const config = workspace.getConfiguration('dragDropImport.importStatements');
-  const pathMappings = config.get<PathMapping>('pathMappings') || {
-    '@': 'src',
-    '~': 'node_modules/',
-  };
+  const pathMappings = getPathMappingsConfiguration();
 
   if (!pathMappings || Object.keys(pathMappings).length === 0) {
     return preserveFileExtension ? filePath : removeFileExt(filePath);
@@ -97,7 +87,7 @@ export function getAliasPath(filePath: string, preserveFileExtension = true): st
     .map(([alias, realPath]) => ({
       alias,
       realPath: realPath.endsWith('/') ? realPath : `${realPath}/`,
-      addSlash: alias !== '~' // 特殊处理 ~ 别名，不添加斜杠
+      addSlash: alias !== '~' // special handling for ~ alias, do not add slash
     }))
     .sort((a, b) => b.realPath.length - a.realPath.length);
 
@@ -137,8 +127,8 @@ export function getPath({ dragFilePath, dropFilePath }: DragDropParams): string 
     getFileType(dropFilePath) === 'stylesheet';
 
   const shouldUseRelativePath = isStyleSheetToStyleSheet
-    ? pathStyle.get('styleSheet2styleSheet') === 'relative'
-    : pathStyle.get('general') === 'relative';
+    ? pathStyle.styleSheet2styleSheet === 'relative'
+    : pathStyle.general === 'relative';
 
   return shouldUseRelativePath
     ? getRelativePath(dropFilePath, dragFilePath)
