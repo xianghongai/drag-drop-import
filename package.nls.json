@@ -1,0 +1,20 @@
+{
+  "extension.description": "drag-and-drop file imports, support relative path and alias path.",
+  "configuration.importStatements.pathStyle.description": "Import style configuration",
+  "configuration.importStatements.pathStyle.general.title": "General import style",
+  "configuration.importStatements.pathStyle.general.description": "Supported general import styles",
+  "configuration.importStatements.pathStyle.styleSheet2styleSheet.title": "Style sheet import style",
+  "configuration.importStatements.pathStyle.styleSheet2styleSheet.description": "Supported style sheet import styles",
+  "configuration.importStatements.pathMappings.title": "Path mappings",
+  "configuration.importStatements.pathMappings.description": "Path mappings configuration",
+  "configuration.importStatements.script.javascriptImportStyle.title": "Javascript import style",
+  "configuration.importStatements.script.javascriptImportStyle.description": "Supported Javascript import styles",
+  "configuration.importStatements.script.typescriptImportStyle.title": "Typescript import style",
+  "configuration.importStatements.script.typescriptImportStyle.description": "Supported Typescript import styles",
+  "configuration.importStatements.script.preserveTypeScriptFileExtension.title": "Preserve file extension",
+  "configuration.importStatements.script.preserveTypeScriptFileExtension.description": "Preserve the file extension in the alias path.",
+  "configuration.importStatements.styleSheet.cssImportStyle.title": "CSS import style",
+  "configuration.importStatements.styleSheet.cssImportStyle.description": "Supported CSS import styles",
+  "configuration.importStatements.sameDirKeepRelative.title": "Same directory keep relative",
+  "configuration.importStatements.sameDirKeepRelative.description": "When dragging and dropping files within the same directory, keep the relative path."
+}

@@ -1,0 +1,20 @@
+{
+  "extension.description": "拖放导入，支持相对路径和别名路径。",
+  "configuration.importStatements.pathStyle.description": "导入风格配置",
+  "configuration.importStatements.pathStyle.general.title": "通用导入风格",
+  "configuration.importStatements.pathStyle.general.description": "支持的通用导入风格",
+  "configuration.importStatements.pathStyle.styleSheet2styleSheet.title": "样式表导入风格",
+  "configuration.importStatements.pathStyle.styleSheet2styleSheet.description": "支持的样式表导入风格",
+  "configuration.importStatements.pathMappings.title": "路径映射",
+  "configuration.importStatements.pathMappings.description": "路径映射配置",
+  "configuration.importStatements.script.javascriptImportStyle.title": "Javascript导入风格",
+  "configuration.importStatements.script.javascriptImportStyle.description": "支持的Javascript导入风格",
+  "configuration.importStatements.script.typescriptImportStyle.title": "Typescript导入风格",
+  "configuration.importStatements.script.typescriptImportStyle.description": "支持的Typescript导入风格",
+  "configuration.importStatements.script.preserveTypeScriptFileExtension.title": "保留文件扩展名",
+  "configuration.importStatements.script.preserveTypeScriptFileExtension.description": "保留文件扩展名",
+  "configuration.importStatements.styleSheet.cssImportStyle.title": "CSS导入风格",
+  "configuration.importStatements.styleSheet.cssImportStyle.description": "支持的CSS导入风格",
+  "configuration.importStatements.sameDirKeepRelative.title": "同目录保留相对路径",
+  "configuration.importStatements.sameDirKeepRelative.description": "同目录拖放文件时采用相对路径"
+}

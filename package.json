@@ -1,7 +1,7 @@
 {
   "name": "drag-drop-import",
   "displayName": "Drag > (shift) > Drop > Import",
-  "description": "Support relative path and alias path.",
+  "description": "%extension.description%",
   "publisher": "NicholasHsiang",
   "version": "1.0.2",
   "author": {
@@ -64,6 +64,7 @@
     "onLanguage:vue"
   ],
   "main": "./out/extension.js",
+  "l10n": "./l10n",
   "contributes": {
     "configuration": [
       {
@@ -71,13 +72,13 @@
         "properties": {
           "dragDropImport.importStatements.pathStyle": {
             "type": "object",
-            "description": "",
+            "description": "%configuration.importStatements.pathStyle.description%",
             "order": 0,
             "properties": {
               "general": {
                 "type": "string",
-                "title": "General import style",
-                "description": "Supported general import styles",
+                "title": "%configuration.importStatements.pathStyle.general.title%",
+                "description": "%configuration.importStatements.pathStyle.general.description%",
                 "enum": [
                   "relative",
                   "alias"
@@ -86,8 +87,8 @@
               },
               "styleSheet2styleSheet": {
                 "type": "string",
-                "title": "Style sheet import style",
-                "description": "Supported style sheet import styles",
+                "title": "%configuration.importStatements.pathStyle.styleSheet2styleSheet.title%",
+                "description": "%configuration.importStatements.pathStyle.styleSheet2styleSheet.description%",
                 "enum": [
                   "relative",
                   "alias"
@@ -103,7 +104,7 @@
           },
           "dragDropImport.importStatements.pathMappings": {
             "type": "object",
-            "description": "Path mappings configuration",
+            "description": "%configuration.importStatements.pathMappings.description%",
             "order": 2,
             "additionalProperties": {
               "type": "string"
@@ -114,8 +115,8 @@
             }
           },
           "dragDropImport.importStatements.script.javascriptImportStyle": {
-            "title": "Javascript import styles",
-            "description": "Supported Javascript import styles",
+            "title": "%configuration.importStatements.script.javascriptImportStyle.title%",
+            "description": "%configuration.importStatements.script.javascriptImportStyle.description%",
             "order": 3,
             "type": "string",
             "default": "import { name } from '_path_';",
@@ -128,8 +129,8 @@
             ]
           },
           "dragDropImport.importStatements.script.typescriptImportStyle": {
-            "title": "Typescript (.ts) import styles",
-            "description": "Supported Typescript (.ts) import styles",
+            "title": "%configuration.importStatements.script.typescriptImportStyle.title%",
+            "description": "%configuration.importStatements.script.typescriptImportStyle.description%",
             "order": 4,
             "type": "string",
             "default": "import { name } from '_path_';",
@@ -142,15 +143,15 @@
             ]
           },
           "dragDropImport.importStatements.script.preserveTypeScriptFileExtension": {
-            "title": "Preserve file extension",
-            "description": "Preserve the file extension in the alias path.",
+            "title": "%configuration.importStatements.script.preserveTypeScriptFileExtension.title%",
+            "description": "%configuration.importStatements.script.preserveTypeScriptFileExtension.description%",
             "order": 5,
             "type": "boolean",
             "default": false
           },
           "dragDropImport.importStatements.styleSheet.cssImportStyle": {
-            "title": "CSS import styles",
-            "description": "Supported CSS import styles",
+            "title": "%configuration.importStatements.styleSheet.cssImportStyle.title%",
+            "description": "%configuration.importStatements.styleSheet.cssImportStyle.description%",
             "order": 6,
             "type": "string",
             "default": "@import '_path_';",
@@ -158,6 +159,13 @@
               "@import '_path_';",
               "@import url('_path_');"
             ]
+          },
+          "dragDropImport.importStatements.sameDirKeepRelative": {
+            "title": "%configuration.importStatements.sameDirKeepRelative.title%",
+            "description": "%configuration.importStatements.sameDirKeepRelative.description%",
+            "order": 7,
+            "type": "boolean",
+            "default": true
           }
         }
       }
@@ -174,17 +182,21 @@
     "publish": "vsce publish"
   },
   "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "@stylistic/eslint-plugin": "^2.11.0",
     "@types/lodash": "^4.17.13",
     "@types/node": "^22.9.0",
     "@types/vscode": "^1.90.0",
-    "@vscode/vsce": "^3.2.1",
     "@typescript-eslint/eslint-plugin": "^8.15.0",
     "@typescript-eslint/parser": "^8.15.0",
+    "@vscode/l10n-dev": "^0.0.35",
+    "@vscode/vsce": "^3.2.1",
     "eslint": "^9.15.0",
     "typescript": "^5.6.3",
     "typescript-eslint": "^8.15.0"
   },
   "dependencies": {
+    "@vscode/l10n": "^0.0.18",
     "change-case": "^4.0.0"
   }
 }
