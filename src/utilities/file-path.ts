@@ -57,14 +57,14 @@ function isSameDir(basePath: string, targetPath: string): boolean {
 
 /**
  * Get calculated import style to append in editor.
- * @param basePath The base path to calculate from.
- * @param targetPath The path to calculate the relative path to.
+ * @param dropFilePath Dropped file path
+ * @param dragFilePath Dragged file path
  * @param preserveFileExtension Whether to preserve the file extension
  * @returns The calculated relative path.
  */
-export function getRelativePath(basePath: string, targetPath: string, preserveFileExtension = true): string {
-  const startChars = isSameDir(basePath, targetPath) ? './' : '';
-  const relativePath = toWindowsPath(relative(basePath, targetPath));
+export function getRelativePath(dropFilePath: string, dragFilePath: string, preserveFileExtension = true): string {
+  const startChars = isSameDir(dragFilePath, dropFilePath) ? './' : '';
+  const relativePath = toWindowsPath(relative(dropFilePath, dragFilePath));
   const finalPath = preserveFileExtension ? relativePath : removeFileExt(relativePath);
   return startChars + finalPath;
 }
@@ -119,6 +119,13 @@ export function getAliasPath(filePath: string, preserveFileExtension = true): st
 export function getPath({ dragFilePath, dropFilePath }: DragDropParams): string {
   if (dragFilePath.includes('node_modules')) {
     return getAliasPath(dragFilePath);
+  }
+
+  // if dragFilePath is in dropFilePath, use relative path
+  const sameDirKeepRelative = getSameDirKeepRelativeConfiguration();
+
+  if (sameDirKeepRelative && isSameDir(dragFilePath, dropFilePath)) {
+    return getRelativePath(dropFilePath, dragFilePath);
   }
 
   const pathStyle = getPathStyleConfiguration();
