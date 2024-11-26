@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.1.0 (2024-11-26)
+
+- When dragging and dropping files within the same directory, keep the relative path (optional).
+- l10n
+
 ## v1.0.2 (2024-11-23)
 
 - 改了一下 README.md 和 package.json 的描述，看起来更直接一点
