@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.1 (2024-11-27)
+
+- engines: vscode >= 1.70.0
+
 ## v1.1.0 (2024-11-26)
 
 - When dragging and dropping files within the same directory, keep the relative path (optional).

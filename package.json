@@ -3,14 +3,14 @@
   "displayName": "Drag > (shift) > Drop > Import",
   "description": "%extension.description%",
   "publisher": "NicholasHsiang",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": {
     "name": "NicholasHsiang",
     "email": "xianghongai@gmail.com"
   },
   "icon": "assets/icon.png",
   "engines": {
-    "vscode": "^1.90.0"
+    "vscode": "^1.70.0"
   },
   "homepage": "https://github.com/xianghongai/drag-drop-import",
   "repository": {
@@ -186,7 +186,7 @@
     "@stylistic/eslint-plugin": "^2.11.0",
     "@types/lodash": "^4.17.13",
     "@types/node": "^22.9.0",
-    "@types/vscode": "^1.90.0",
+    "@types/vscode": "^1.70.0",
     "@typescript-eslint/eslint-plugin": "^8.15.0",
     "@typescript-eslint/parser": "^8.15.0",
     "@vscode/l10n-dev": "^0.0.35",
