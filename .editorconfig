@@ -1,16 +1,24 @@
 # https://editorconfig.org
 # https://github.com/editorconfig/editorconfig/wiki/EditorConfig-Properties
-
+# 为根配置
 root = true
 
 [*]
+# 字符编码
 charset = utf-8
+# 缩进风格 (space, tab)
 indent_style = space
+# 缩进大小
 indent_size = 2
-end_of_line = lf                # lf, cr, crlf
-insert_final_newline = true     # 空行结尾
-trim_trailing_whitespace = true # 删除换行符之前的空格字符
+# 换行符风格
+end_of_line = lf
+# 空行结尾
+insert_final_newline = true
+# 删除换行符之前的空格字符
+trim_trailing_whitespace = true
 
 [*.md]
-insert_final_newline = false
+# 空行结尾
+insert_final_newline = true
+# 删除换行符之前的空格字符
 trim_trailing_whitespace = false
