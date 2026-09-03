@@ -12,7 +12,13 @@ type ImageFileExtension = '.gif' | '.jpeg' | '.jpg' | '.png' | '.webp' | '.svg';
 
 type FontFileExtension = '.woff' | '.woff2' | '.ttf' | '.eot';
 
-type WebFileExtension = HTMLFileExtension | StylesheetFileExtension | ImageFileExtension | FontFileExtension | YAMLFileExtension | MarkdownFileExtension;
+type WebFileExtension =
+  | HTMLFileExtension
+  | StylesheetFileExtension
+  | ImageFileExtension
+  | FontFileExtension
+  | YAMLFileExtension
+  | MarkdownFileExtension;
 
 type DataFileExtension = '.json';
 

@@ -1,5 +1,5 @@
-import { ExtensionContext, languages } from "vscode";
-import { AutoImportOnDropProvider } from "./subscriptions";
+import { ExtensionContext, languages } from 'vscode';
+import { AutoImportOnDropProvider } from './subscriptions';
 import { selectors } from './providers';
 
 /**
@@ -12,7 +12,5 @@ export function activate(context: ExtensionContext) {
   /*
     Register Drag and drop handler on activation
    */
-	context.subscriptions.push(
-    languages.registerDocumentDropEditProvider(selectors, new AutoImportOnDropProvider())
-  );
+  context.subscriptions.push(languages.registerDocumentDropEditProvider(selectors, new AutoImportOnDropProvider()));
 }

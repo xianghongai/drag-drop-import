@@ -1,70 +1,79 @@
 {
   "name": "drag-drop-import",
   "displayName": "Drag > (shift) > Drop > Import",
+  "version": "1.2.0",
   "description": "%extension.description%",
-  "publisher": "NicholasHsiang",
-  "version": "1.1.1",
-  "author": {
-    "name": "NicholasHsiang",
-    "email": "xianghongai@gmail.com"
-  },
-  "icon": "assets/icon.png",
-  "engines": {
-    "vscode": "^1.70.0"
-  },
-  "homepage": "https://github.com/xianghongai/drag-drop-import",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/xianghongai/drag-drop-import.git"
-  },
-  "bugs": {
-    "email": "xianghongai@gmail.com",
-    "url": "https://github.com/xianghongai/drag-drop-import/issues"
-  },
-  "galleryBanner": {
-    "color": "#494949",
-    "theme": "dark"
-  },
-  "license": "MIT",
   "categories": [
     "Other",
     "Snippets"
   ],
   "keywords": [
-    "drag import",
-    "drag and drop import",
-    "relative import",
     "alias import",
-    "auto import",
-    "relative path",
-    "drag",
-    "import",
-    "path",
-    "relative",
     "angular",
-    "react",
-    "vue",
-    "javascript",
-    "typescript",
+    "auto import",
     "css",
-    "scss",
-    "vue",
+    "drag",
+    "drag and drop import",
+    "drag import",
     "html",
-    "markdown"
+    "import",
+    "javascript",
+    "markdown",
+    "path",
+    "react",
+    "relative",
+    "relative import",
+    "relative path",
+    "scss",
+    "typescript",
+    "vue"
   ],
-  "activationEvents": [
-    "onLanguage:javascript",
-    "onLanguage:javascriptreact",
-    "onLanguage:typescript",
-    "onLanguage:typescriptreact",
-    "onLanguage:css",
-    "onLanguage:scss",
-    "onLanguage:less",
-    "onLanguage:html",
-    "onLanguage:vue"
-  ],
-  "main": "./out/extension.js",
-  "l10n": "./l10n",
+  "homepage": "https://github.com/xianghongai/drag-drop-import",
+  "bugs": {
+    "url": "https://github.com/xianghongai/drag-drop-import/issues",
+    "email": "xianghongai@gmail.com"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "NicholasHsiang",
+    "email": "xianghongai@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xianghongai/drag-drop-import.git"
+  },
+  "publisher": "NicholasHsiang",
+  "main": "./dist/extension.js",
+  "scripts": {
+    "check-types": "tsc --noEmit",
+    "clean": "rimraf --glob \"*.vsix\" dist",
+    "compile": "pnpm run check-types && pnpm run lint && node esbuild.js",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "lint": "oxlint src test",
+    "package": "pnpm run check-types && pnpm run lint && node esbuild.js --production",
+    "test": "vitest run",
+    "vsce:package": "vsce package --no-dependencies",
+    "vsce:publish": "vsce publish --no-dependencies",
+    "vscode:prepublish": "pnpm run clean && pnpm run package",
+    "watch": "pnpm run \"/^watch:/\"",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch"
+  },
+  "dependencies": {
+    "change-case": "^4.1.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@types/vscode": "1.100.0",
+    "@vscode/vsce": "^3.9.2",
+    "esbuild": "^0.28.2",
+    "oxfmt": "^0.65.0",
+    "oxlint": "^1.81.0",
+    "rimraf": "^6.1.3",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.11"
+  },
   "contributes": {
     "configuration": [
       {
@@ -171,32 +180,24 @@
       }
     ]
   },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "lint": "eslint src --ext ts",
-    "prebuild": "npm run compile",
-    "build": "vsce package",
-    "prepublish": "npm run build",
-    "publish": "vsce publish"
+  "activationEvents": [
+    "onLanguage:css",
+    "onLanguage:html",
+    "onLanguage:javascript",
+    "onLanguage:javascriptreact",
+    "onLanguage:less",
+    "onLanguage:scss",
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact",
+    "onLanguage:vue"
+  ],
+  "icon": "assets/icon.png",
+  "galleryBanner": {
+    "color": "#0f172a",
+    "theme": "dark"
   },
-  "devDependencies": {
-    "@eslint/js": "^9.15.0",
-    "@stylistic/eslint-plugin": "^2.11.0",
-    "@types/lodash": "^4.17.13",
-    "@types/node": "^22.9.0",
-    "@types/vscode": "^1.70.0",
-    "@typescript-eslint/eslint-plugin": "^8.15.0",
-    "@typescript-eslint/parser": "^8.15.0",
-    "@vscode/l10n-dev": "^0.0.35",
-    "@vscode/vsce": "^3.2.1",
-    "eslint": "^9.15.0",
-    "typescript": "^5.6.3",
-    "typescript-eslint": "^8.15.0"
+  "engines": {
+    "vscode": "^1.100.0"
   },
-  "dependencies": {
-    "@vscode/l10n": "^0.0.18",
-    "change-case": "^4.0.0"
-  }
+  "packageManager": "pnpm@11.25.0"
 }

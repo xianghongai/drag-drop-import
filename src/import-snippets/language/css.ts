@@ -11,7 +11,9 @@ import { getFileType } from '../../utilities';
  */
 export function snippet({ dragFilePath, dropFilePath }: DragDropParams): SnippetString {
   switch (getFileType(dragFilePath)) {
-    case 'image': return css.cssImageImportStatement({ dragFilePath, dropFilePath });
-    default: return css.cssImportStatement({ dragFilePath, dropFilePath });
+    case 'image':
+      return css.cssImageImportStatement({ dragFilePath, dropFilePath });
+    default:
+      return css.cssImportStatement({ dragFilePath, dropFilePath });
   }
 }

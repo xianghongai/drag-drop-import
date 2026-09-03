@@ -12,7 +12,7 @@ import { getFileDir, getFileName, getPath } from '../../utilities';
  */
 export function htmlScriptImportStatement({ dragFilePath, dropFilePath }: DragDropParams): SnippetString {
   const importPath = getPath({ dragFilePath, dropFilePath });
-  return new SnippetString(`<script type=\"\${1:text/javascript}\" src=\"${importPath}\"></script>${EOL}$0`);
+  return new SnippetString(`<script type="\${1:text/javascript}" src="${importPath}"></script>${EOL}$0`);
 }
 
 /**
@@ -29,7 +29,7 @@ export function htmlImageImportStatement({ dragFilePath, dropFilePath }: DragDro
     fileName = getFileDir(dragFilePath);
   }
 
-  return new SnippetString(`<img src=\"${importPath}\" alt=\"\${1:${changeCase.capitalCase(fileName)}}\">${EOL}$0`);
+  return new SnippetString(`<img src="${importPath}" alt="\${1:${changeCase.capitalCase(fileName)}}">${EOL}$0`);
 }
 
 /**
@@ -40,5 +40,5 @@ export function htmlImageImportStatement({ dragFilePath, dropFilePath }: DragDro
  */
 export function htmlStylesheetImportStatement({ dragFilePath, dropFilePath }: DragDropParams): SnippetString {
   const importPath = getPath({ dragFilePath, dropFilePath });
-  return new SnippetString(`<link href=\"${importPath}\" rel=\"stylesheet\">${EOL}$0`);
+  return new SnippetString(`<link href="${importPath}" rel="stylesheet">${EOL}$0`);
 }

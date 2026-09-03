@@ -5,7 +5,8 @@ import { DragDropParams, ImportStyle } from '../../model';
 import { importStyle } from '../../providers';
 import { getFileDir, getFileName, getFileType, getPath, removeFileExt } from '../../utilities';
 import {
-  getPreserveTypeScriptFileExtensionConfiguration, getTypescriptImportStyleConfiguration,
+  getPreserveTypeScriptFileExtensionConfiguration,
+  getTypescriptImportStyleConfiguration,
 } from '../../utilities/workspace-configuration';
 
 /**

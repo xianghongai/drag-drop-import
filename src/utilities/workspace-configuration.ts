@@ -32,7 +32,6 @@ interface PathStyleConfiguration {
   styleSheet2styleSheet: PathStyleType;
 }
 
-
 /**
  * Get the path style configuration
  * @returns The path style configuration
@@ -40,7 +39,7 @@ interface PathStyleConfiguration {
 export function getPathStyleConfiguration() {
   return configuration.get<PathStyleConfiguration>('importStatements.pathStyle', {
     general: 'alias',
-    styleSheet2styleSheet: 'relative'
+    styleSheet2styleSheet: 'relative',
   });
 }
 
@@ -63,7 +62,7 @@ interface PathMappings {
 export function getPathMappingsConfiguration(): PathMappings {
   return configuration.get<PathMappings>('importStatements.pathMappings', {
     '@': 'src',
-    '~': 'node_modules/'
+    '~': 'node_modules/',
   });
 }
 
@@ -82,7 +81,10 @@ type ScriptImportStyle =
  * @returns The script import style configuration
  */
 export function getScriptImportStyleConfiguration(): ScriptImportStyle {
-  return configuration.get<ScriptImportStyle>('importStatements.script.javascriptImportStyle', `import { name } from '_path_';`);
+  return configuration.get<ScriptImportStyle>(
+    'importStatements.script.javascriptImportStyle',
+    `import { name } from '_path_';`
+  );
 }
 
 /**
@@ -100,7 +102,10 @@ type TypescriptImportStyle =
  * @returns The typescript import style configuration
  */
 export function getTypescriptImportStyleConfiguration(): TypescriptImportStyle {
-  return configuration.get<TypescriptImportStyle>('importStatements.script.typescriptImportStyle', `import { name } from '_path_';`);
+  return configuration.get<TypescriptImportStyle>(
+    'importStatements.script.typescriptImportStyle',
+    `import { name } from '_path_';`
+  );
 }
 
 /**
@@ -114,9 +119,7 @@ export function getPreserveTypeScriptFileExtensionConfiguration(): boolean {
 /**
  * The css import style type
  */
-type CssImportStyle =
-  `@import '_path_';` |
-  `@import url('_path_');`;
+type CssImportStyle = `@import '_path_';` | `@import url('_path_');`;
 
 /**
  * Get the css import style configuration

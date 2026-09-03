@@ -1,5 +1,14 @@
 # Changelog
 
+All notable changes to the **Drag > (shift) > Drop > Import** extension are documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Each entry lists only the headline change per release — see git history/tags for full detail.
+
+## v1.2.0 (2026-09-03)
+
+- Unify packaging and publishing scripts to `vsce:package` and `vsce:publish`
+- Migrate toolchain to oxlint, oxfmt, and Vitest
+
 ## v1.1.1 (2024-11-27)
 
 - engines: vscode >= 1.70.0

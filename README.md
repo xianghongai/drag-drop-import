@@ -1,6 +1,4 @@
-<p>
-  <h1 align="center">Drag > (shift) > Drop > Import</h1>
-</p>
+# Drag > (shift) > Drop > Import
 
 <p align="center">
   <a href="https://github.com/xianghongai/drag-drop-import">
@@ -21,7 +19,6 @@
 </p>
 
 Fork: 🎉 Here ← [ElecTreeFrying/drag-import-relative-path](https://github.com/ElecTreeFrying/drag-import-relative-path) 🫰.
-
 
 Support relative path and alias path.
 
@@ -52,7 +49,7 @@ Support relative path and alias path.
 ## Supported file extensions / 支持的文件类型
 
 | Drop         | Drag                                                                                                                       |
-|--------------|----------------------------------------------------------------------------------------------------------------------------|
+| ------------ | -------------------------------------------------------------------------------------------------------------------------- |
 | `.vue`       | `.vue`<br>`.js`<br>`.json`<br>`.css`, `.sass`, `.scss`, `.less`<br>`.gif`, `.jpeg`, `.jpg`, `.png`, `.svg`, `.webp`        |
 | `.js`, `.ts` | `.js`, `.ts`<br>`.json`<br>`.css`, `.sass`, `.scss`, `.less`<br>`.gif`, `.jpeg`, `.jpg`, `.png`, `.svg`, `.webp`           |
 | `.jsx`       | `.jsx`<br>`.js`<br>`.json`<br>`.css`, `.sass`, `.scss`, `.less`<br>`.gif`, `.jpeg`, `.jpg`, `.png`, `.svg`, `.webp`        |
