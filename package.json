@@ -1,7 +1,7 @@
 {
   "name": "drag-drop-import",
   "displayName": "Drag > (shift) > Drop > Import",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "%extension.description%",
   "categories": [
     "Other",
@@ -68,6 +68,7 @@
     "@types/vscode": "1.100.0",
     "@vscode/vsce": "^3.9.2",
     "esbuild": "^0.28.2",
+    "ovsx": "^1.1.1",
     "oxfmt": "^0.65.0",
     "oxlint": "^1.81.0",
     "rimraf": "^6.1.3",
